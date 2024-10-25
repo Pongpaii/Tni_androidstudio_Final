@@ -1,12 +1,45 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<AbsoluteLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
-    android:padding="16dp">
+    android:background="#CCF8C1">
+
+    <View
+        android:id="@+id/view2"
+        android:layout_width="538dp"
+        android:layout_height="83dp"
+        android:layout_x="1dp"
+        android:layout_y="1dp"
+        android:background="#FFFFFF"
+        android:backgroundTint="#56FE6D" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_x="94dp"
+        android:layout_y="27dp"
+        android:text="Transaction History"
+        android:textColor="#FFFFFF"
+        android:textSize="24sp"
+        android:textStyle="bold" />
+
+    <Button
+        android:id="@+id/btnReset"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_x="88dp"
+        android:layout_y="643dp"
+        android:backgroundTint="#46AD60"
+        android:text="Reset Transaction History"
+        android:textColor="#FFFFFF" />
 
     <ListView
         android:id="@+id/listViewTransactions"
         android:layout_width="match_parent"
-        android:layout_height="match_parent" />
-</LinearLayout>
+        android:layout_height="514dp"
+        android:layout_x="-1dp"
+        android:layout_y="99dp"
+        android:divider="@android:color/darker_gray"
+        android:dividerHeight="1dp" />
+
+</AbsoluteLayout>
