@@ -10,12 +10,10 @@ import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.example.finalv1.AddTransactionActivity;
-
 public class HomeActivity extends AppCompatActivity {
 
     TextView tvWalletName, tvIncome, tvExpense, tvBalance;
-    Button btnAddTransaction;
+    Button btnAddTransaction, btnReset; // Add btnReset here
     SharedPreferences sharedPreferences;
 
     @Override
@@ -28,6 +26,7 @@ public class HomeActivity extends AppCompatActivity {
         tvExpense = findViewById(R.id.tvExpense);
         tvBalance = findViewById(R.id.tvBalance);
         btnAddTransaction = findViewById(R.id.btnAddTransaction);
+        btnReset = findViewById(R.id.btnReset); // Initialize btnReset
 
         sharedPreferences = getSharedPreferences("WalletApp", MODE_PRIVATE);
         String walletName = sharedPreferences.getString("wallet_name", "My Wallet");
@@ -41,6 +40,14 @@ public class HomeActivity extends AppCompatActivity {
             public void onClick(View v) {
                 Intent intent = new Intent(HomeActivity.this, AddTransactionActivity.class);
                 startActivity(intent);
+            }
+        });
+
+        // Set up the Reset button click listener
+        btnReset.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                resetIncomeAndExpense();
             }
         });
     }
@@ -58,5 +65,14 @@ public class HomeActivity extends AppCompatActivity {
         tvIncome.setText("Income: $" + income);
         tvExpense.setText("Expense: $" + expense);
         tvBalance.setText("Balance: $" + (income - expense));
+    }
+
+    // Method to reset income and expense values
+    private void resetIncomeAndExpense() {
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+        editor.putInt("income", 0); // Reset income
+        editor.putInt("expense", 0); // Reset expense
+        editor.apply(); // Apply changes
+        updateIncomeAndExpense(); // Update the displayed values
     }
 }
