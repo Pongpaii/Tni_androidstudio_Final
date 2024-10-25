@@ -13,7 +13,7 @@ import androidx.appcompat.app.AppCompatActivity;
 public class HomeActivity extends AppCompatActivity {
 
     TextView tvWalletName, tvIncome, tvExpense, tvBalance;
-    Button btnAddTransaction, btnReset; // Add btnReset here
+    Button btnAddTransaction, btnReset,myviewhis; // Add btnReset here
     SharedPreferences sharedPreferences;
 
     @Override
@@ -27,6 +27,7 @@ public class HomeActivity extends AppCompatActivity {
         tvBalance = findViewById(R.id.tvBalance);
         btnAddTransaction = findViewById(R.id.btnAddTransaction);
         btnReset = findViewById(R.id.btnReset); // Initialize btnReset
+        myviewhis = findViewById(R.id.btnViewHistory);
 
         sharedPreferences = getSharedPreferences("WalletApp", MODE_PRIVATE);
         String walletName = sharedPreferences.getString("wallet_name", "My Wallet");
@@ -42,6 +43,13 @@ public class HomeActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+        myviewhis.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(HomeActivity.this, TransactionHistoryActivity.class);
+                startActivity(intent);
+            }
+        });
 
         // Set up the Reset button click listener
         btnReset.setOnClickListener(new View.OnClickListener() {
@@ -49,6 +57,8 @@ public class HomeActivity extends AppCompatActivity {
             public void onClick(View v) {
                 resetIncomeAndExpense();
             }
+
+
         });
     }
 
